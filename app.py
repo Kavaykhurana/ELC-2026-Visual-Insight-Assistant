@@ -22,6 +22,11 @@ RESULTS_FILE = OUTPUT_DIR / "results.csv"
 
 CAPTION_MODEL_ID = "Salesforce/blip-image-captioning-base"
 VQA_MODEL_ID = "Salesforce/blip-vqa-base"
+ALLOWED_IMAGE_NAMES = {
+    "sample_1_laptop.png": "Man sitting on a chair using a laptop",
+    "sample_2_lion.png": "Lion standing in a forest",
+    "sample_3_soccer.png": "Children playing soccer on a field",
+}
 
 
 def get_device() -> str:
@@ -166,27 +171,26 @@ def main() -> None:
 
     with left:
         st.subheader("1. Add Image")
-        input_mode = st.radio(
-            "Choose input method",
-            ["Upload image", "Use camera"],
-            horizontal=True,
+        st.write("Upload only one of the three selected demo images.")
+        st.code("\n".join(ALLOWED_IMAGE_NAMES.keys()))
+        image_file = st.file_uploader(
+            "Upload selected image",
+            type=["png"],
         )
 
-        image_file = None
-        if input_mode == "Upload image":
-            image_file = st.file_uploader(
-                "Upload a JPG or PNG image",
-                type=["jpg", "jpeg", "png"],
-            )
-        else:
-            image_file = st.camera_input("Capture image")
-
         if image_file is None:
-            st.info("Upload or capture an image to start.")
+            st.info("Save the three provided images in sample_images/ and upload one.")
+            return
+
+        image_name = getattr(image_file, "name", "camera_image.png")
+        if image_name not in ALLOWED_IMAGE_NAMES:
+            st.warning(
+                "This project demo uses only the three provided images. "
+                f"Please upload one of: {', '.join(ALLOWED_IMAGE_NAMES)}"
+            )
             return
 
         image = Image.open(image_file).convert("RGB")
-        image_name = getattr(image_file, "name", "camera_image.png")
         reset_session_for_new_image(image_name)
         st.image(image, caption=image_name, use_container_width=True)
 

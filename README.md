@@ -10,7 +10,7 @@
 
 Computer vision is an area of artificial intelligence that helps computers understand images and videos. Modern computer vision systems are no longer limited to detecting edges, colors, or objects. They can combine visual information with natural language to describe images and answer questions about them.
 
-This project builds an interactive image understanding system using a pretrained vision-language model. The user uploads one of the three selected demo images, the system generates a caption, and the user can ask natural-language questions about the image.
+This project builds an interactive image understanding system using a pretrained vision-language model. The user uploads one of the three selected demo images, the system generates a caption, and the user can ask natural-language questions about the image. The app is restricted to the three project images only.
 
 ### 2. Problem Statement
 
@@ -58,7 +58,7 @@ Result is displayed and optionally saved
 
 ### 5. Implementation
 
-The main file is `app.py`. It loads the pretrained models, accepts image input, generates captions, answers questions, and logs results to `outputs/results.csv`.
+The main file is `app.py`. It loads the pretrained models, accepts only the three selected image filenames, generates captions, answers questions, and logs results to `outputs/results.csv`.
 
 The app uses Streamlit caching so the models load once and can be reused during the session.
 
