@@ -1,103 +1,115 @@
 # Visual Insight Assistant
 
-## Image Captioning and Visual Question Answering using BLIP
+**Image Captioning and Visual Question Answering using BLIP**
 
-**Roll No:** 1024170154
+**Roll Number:** 1024170154  
+**ELC Topic:** Vision-Language Models for Image Understanding  
+**Project Type:** Computer Vision and Multimodal AI Application
 
-**ELC Topic:** Vision-Language Models for Image Understanding
+## Overview
 
-### 1. Introduction
+Visual Insight Assistant is an interactive computer vision application that combines image understanding with natural-language interaction. The system uses pretrained BLIP vision-language models to generate captions for images and answer user questions about visual content.
 
-Computer vision is an area of artificial intelligence that helps computers understand images and videos. Modern computer vision systems are no longer limited to detecting edges, colors, or objects. They can combine visual information with natural language to describe images and answer questions about them.
+The project is built around three fixed demonstration images:
 
-This project builds an interactive image understanding system using a pretrained vision-language model. The user uploads one of the three selected demo images, the system generates a caption, and the user can ask natural-language questions about the image. The app is restricted to the three project images only.
+- A person using a laptop
+- A lion in a forest
+- Children playing soccer
 
-### 2. Problem Statement
+The application reads only these three project images from the `sample_images/` folder. This keeps the demonstration focused, reproducible, and aligned with the evaluation examples.
 
-Traditional image processing can identify simple visual patterns, but it cannot easily explain an image in human language or answer questions about it. The problem is to build a system that can understand image content and interact with the user through text.
+## Problem Statement
 
-The goal of this project is to create a vision-language image understanding assistant that performs:
+Traditional image processing can detect simple patterns, colors, edges, or objects, but it cannot easily explain an image in natural language or answer questions about image content. This project addresses that limitation by using a vision-language model that processes both visual and textual information.
 
-- Image caption generation
+The objective is to build a user-friendly system that can:
+
+- Understand selected image content
+- Generate a meaningful image caption
+- Answer natural-language questions about the image
+- Record evaluation results such as correctness and response time
+
+## Features
+
+- Fixed three-image project dataset
+- Automatic image caption generation
 - Visual question answering
-- Basic evaluation using accuracy and latency
+- Interactive Streamlit interface
+- Result logging to CSV
+- Basic evaluation with accuracy and latency
+- Clear demo workflow for submission video
 
-### 3. Methodology
+## Technology Stack
 
-The system uses pretrained BLIP models from Hugging Face Transformers:
+| Component | Purpose |
+|---|---|
+| Python | Main programming language |
+| Streamlit | Web application interface |
+| PyTorch | Model execution |
+| Hugging Face Transformers | Loading pretrained BLIP models |
+| Pillow | Image loading and conversion |
+| Pandas | CSV result handling |
 
-- `Salesforce/blip-image-captioning-base`
-- `Salesforce/blip-vqa-base`
+## Models Used
 
-The image captioning model generates a short textual description of the image. The visual question answering model takes both the image and a text question as input, then generates an answer.
-
-The application is built using:
-
-- Python
-- Streamlit
-- PyTorch
-- Hugging Face Transformers
-- Pillow
-- Pandas
-
-### 4. System Flow
+The project uses pretrained BLIP models:
 
 ```text
-User uploads or captures image
-        |
-Image is displayed in the app
-        |
-BLIP captioning model generates a caption
-        |
-User asks a question about the image
-        |
-BLIP VQA model generates an answer
-        |
-Result is displayed and optionally saved
+Salesforce/blip-image-captioning-base
+Salesforce/blip-vqa-base
 ```
 
-### 5. Implementation
+No custom training is performed. The focus of the project is implementation, interaction design, computer vision application flow, and evaluation.
 
-The main file is `app.py`. It loads the pretrained models, accepts only the three selected image filenames, generates captions, answers questions, and logs results to `outputs/results.csv`.
-
-The app uses Streamlit caching so the models load once and can be reused during the session.
-
-### 6. Evaluation
-
-The system is tested with the three selected demo images provided for this project. For each image, the user can ask 2 or 3 questions and manually mark whether the predicted answer is correct.
-
-Metrics used:
-
-- VQA accuracy
-- Average answer latency
-- Manual caption quality score
-
-Example evaluation format:
+## System Workflow
 
 ```text
-Image: sample_1_laptop.png
-Caption: A man sitting in a chair using a laptop.
-Question: What is the person using?
-Predicted answer: laptop
-Expected answer: laptop
-Correct: yes
+Select one of the three project images
+        |
+Display the selected image
+        |
+Generate image caption using BLIP
+        |
+Ask a question about the image
+        |
+Generate answer using BLIP VQA
+        |
+Save result and show evaluation table
 ```
 
-Demo image set:
+## Project Structure
 
 ```text
-sample_1_laptop.png - man sitting on a chair using a laptop
-sample_2_lion.png - lion standing in a forest
-sample_3_soccer.png - children playing soccer on a field
+ELC_VLM_Image_Understanding/
+  app.py
+  requirements.txt
+  README.md
+  SUBMISSION_CHECKLIST.md
+  sample_images/
+    README.md
+    sample_1_laptop.png
+    sample_2_lion.png
+    sample_3_soccer.png
+  demo_assets/
+    demo_script.md
+    test_questions.csv
+  outputs/
+    results.csv
 ```
 
-The test questions are listed in `demo_assets/test_questions.csv`.
+## Required Images
 
-### 7. Conclusion
+Before running the final demo, place only the three provided images inside `sample_images/` using these exact filenames:
 
-This project demonstrates how modern computer vision can be combined with natural language processing. The system uses a pretrained vision-language model to generate image captions and answer questions about images. It shows that multimodal AI can make image understanding more interactive and human-friendly.
+```text
+sample_images/sample_1_laptop.png
+sample_images/sample_2_lion.png
+sample_images/sample_3_soccer.png
+```
 
-## How To Run
+The app will show missing-file warnings if any of these files are not present.
+
+## Setup
 
 Create and activate a virtual environment:
 
@@ -112,23 +124,96 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the app:
+Run the application:
 
 ```bash
 streamlit run app.py
 ```
 
-Open the Streamlit URL shown in the terminal.
+Open the Streamlit URL shown in the terminal, usually:
+
+```text
+http://localhost:8501
+```
+
+## Usage
+
+1. Select one of the available project images.
+2. Click **Generate caption**.
+3. Read the generated image description.
+4. Enter a question about the selected image.
+5. Click **Answer question**.
+6. Add the expected answer if evaluating the result.
+7. Mark whether the answer is correct.
+8. Save the result to CSV.
+
+## Evaluation Plan
+
+Evaluation is performed using the three fixed project images and predefined questions stored in:
+
+```text
+demo_assets/test_questions.csv
+```
+
+Recommended questions:
+
+| Image | Question | Expected Answer |
+|---|---|---|
+| `sample_1_laptop.png` | What is the person using? | laptop |
+| `sample_1_laptop.png` | Where is the person sitting? | chair |
+| `sample_2_lion.png` | What animal is shown? | lion |
+| `sample_2_lion.png` | Where is the lion? | forest |
+| `sample_3_soccer.png` | What sport are the children playing? | soccer |
+| `sample_3_soccer.png` | What object is on the grass? | soccer ball |
+
+Metrics used:
+
+- **VQA Accuracy:** percentage of correctly answered questions
+- **Average Latency:** average response time for answers
+- **Caption Quality:** manual review of caption relevance
+
+Results are saved in:
+
+```text
+outputs/results.csv
+```
+
+## Demo Video Guide
+
+Use the prepared script:
+
+```text
+demo_assets/demo_script.md
+```
+
+The video should show:
+
+- Project title and roll number
+- Selection of the laptop image
+- Caption generation
+- Question answering
+- Saving an evaluation result
+- Evaluation table
+- A quick example using the lion image
+- A quick example using the soccer image
 
 ## Submission Checklist
 
-Before submitting, confirm the final zip contains:
+Before creating the final zip file, confirm that the folder contains:
 
-- Source code: `app.py`
-- Dependency file: `requirements.txt`
-- Write-up: `README.md`
-- Sample images: the three provided images saved in `sample_images/`
-- Results file: `outputs/results.csv`
-- Demo video: `demo_video.mp4`
+- `app.py`
+- `requirements.txt`
+- `README.md`
+- `SUBMISSION_CHECKLIST.md`
+- `sample_images/sample_1_laptop.png`
+- `sample_images/sample_2_lion.png`
+- `sample_images/sample_3_soccer.png`
+- `outputs/results.csv`
+- `demo_assets/demo_script.md`
+- `demo_assets/test_questions.csv`
+- `demo_video.mp4`
 
-The demo video is mandatory according to the problem statement.
+## Conclusion
+
+This project demonstrates how computer vision can be extended through vision-language models. Instead of only detecting objects, the system can describe selected images and answer questions about them. The result is a simple, interactive, and practical image understanding application suitable for demonstrating modern computer vision concepts.
+

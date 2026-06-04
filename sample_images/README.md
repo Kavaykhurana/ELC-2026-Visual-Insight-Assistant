@@ -6,7 +6,7 @@ Use only the three images provided in the chat:
 2. Lion standing in a forest
 3. Children playing soccer on a field
 
-Save them in this folder with these filenames before recording the demo:
+Place them in this folder with these filenames before recording the demo:
 
 ```text
 sample_1_laptop.png
@@ -15,4 +15,3 @@ sample_3_soccer.png
 ```
 
 No other images are required for the project demo.
-

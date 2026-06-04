@@ -17,6 +17,7 @@ from transformers import (
 
 
 BASE_DIR = Path(__file__).resolve().parent
+SAMPLE_IMAGE_DIR = BASE_DIR / "sample_images"
 OUTPUT_DIR = BASE_DIR / "outputs"
 RESULTS_FILE = OUTPUT_DIR / "results.csv"
 
@@ -38,6 +39,14 @@ def get_device() -> str:
 
 
 DEVICE = get_device()
+
+
+def get_available_images() -> list[str]:
+    return [
+        image_name
+        for image_name in ALLOWED_IMAGE_NAMES
+        if (SAMPLE_IMAGE_DIR / image_name).is_file()
+    ]
 
 
 def prepare_results_file() -> None:
@@ -170,27 +179,30 @@ def main() -> None:
     left, right = st.columns([1, 1], gap="large")
 
     with left:
-        st.subheader("1. Add Image")
-        st.write("Upload only one of the three selected demo images.")
-        st.code("\n".join(ALLOWED_IMAGE_NAMES.keys()))
-        image_file = st.file_uploader(
-            "Upload selected image",
-            type=["png"],
+        st.subheader("1. Select Image")
+        st.write("This project uses only the three fixed images in `sample_images/`.")
+        available_images = get_available_images()
+        missing_images = [
+            image_name
+            for image_name in ALLOWED_IMAGE_NAMES
+            if image_name not in available_images
+        ]
+
+        if missing_images:
+            st.warning("Missing image files:")
+            st.code("\n".join(missing_images))
+            st.info("Add only these three project images with the exact filenames above.")
+
+        if not available_images:
+            return
+
+        image_name = st.selectbox(
+            "Choose project image",
+            available_images,
+            format_func=lambda name: f"{name} - {ALLOWED_IMAGE_NAMES[name]}",
         )
 
-        if image_file is None:
-            st.info("Save the three provided images in sample_images/ and upload one.")
-            return
-
-        image_name = getattr(image_file, "name", "camera_image.png")
-        if image_name not in ALLOWED_IMAGE_NAMES:
-            st.warning(
-                "This project demo uses only the three provided images. "
-                f"Please upload one of: {', '.join(ALLOWED_IMAGE_NAMES)}"
-            )
-            return
-
-        image = Image.open(image_file).convert("RGB")
+        image = Image.open(SAMPLE_IMAGE_DIR / image_name).convert("RGB")
         reset_session_for_new_image(image_name)
         st.image(image, caption=image_name, use_container_width=True)
 

@@ -26,12 +26,12 @@ The goal of this project is to make a computer vision system that can understand
 
 ### 3. Image Input
 
-Upload `sample_1_laptop.png` from the `sample_images` folder.
+Select `sample_1_laptop.png` from the image dropdown.
 
 Speak:
 
 ```text
-First, I upload an image into the application. The image is displayed in the interface for processing.
+First, I select one of the fixed project images. The image is displayed in the interface for processing.
 ```
 
 ### 4. Caption Generation
@@ -92,7 +92,7 @@ The saved results are shown in this table. The project calculates basic evaluati
 
 ### 8. Show The Other Two Provided Images
 
-Upload `sample_2_lion.png`.
+Select `sample_2_lion.png`.
 
 Ask:
 
@@ -112,7 +112,7 @@ Speak:
 For the second image, the model identifies the animal as a lion.
 ```
 
-Upload `sample_3_soccer.png`.
+Select `sample_3_soccer.png`.
 
 Ask:
 
@@ -146,7 +146,7 @@ This project demonstrates how modern computer vision can combine image understan
 
 - Show project title
 - Mention roll number 1024170154
-- Upload image
+- Select image
 - Generate caption
 - Ask one question
 - Show answer
