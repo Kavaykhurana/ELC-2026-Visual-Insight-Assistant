@@ -16,6 +16,7 @@ Topic: Vision-Language Models for Image Understanding
 - Include results: fulfilled through `outputs/results.csv` after demo/evaluation examples are saved.
 - Include write-up of 2-3 pages: fulfilled through `README.md`.
 - Include small demo video clip: record using `demo_assets/demo_script.md`.
+- PPT/PowerPoint is not requested in the PDF. Create one only if the faculty separately asks for it.
 
 ## Final Zip Contents
 
@@ -33,6 +34,7 @@ ELC_VLM_Image_Understanding/
     results.csv
   demo_assets/
     demo_script.md
+    test_questions.csv
   demo_video.mp4
 ```
 
