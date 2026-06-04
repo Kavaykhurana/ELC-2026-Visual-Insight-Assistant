@@ -1,6 +1,6 @@
 # Sample Images
 
-Use only the three images provided in the chat:
+Use these three images for the final demo:
 
 1. Man sitting on a chair using a laptop
 2. Lion standing in a forest
@@ -14,4 +14,4 @@ sample_2_lion.png
 sample_3_soccer.png
 ```
 
-No other images are required for the project demo.
+The app also supports uploading any other JPG or PNG image.

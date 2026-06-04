@@ -8,15 +8,9 @@
 
 ## Overview
 
-Visual Insight Assistant is an interactive computer vision application that combines image understanding with natural-language interaction. The system uses pretrained BLIP vision-language models to generate captions for images and answer user questions about visual content.
+Visual Insight Assistant is an interactive computer vision application that combines image understanding with natural-language interaction. The system uses pretrained BLIP vision-language models to generate captions for uploaded images and answer user questions about visual content.
 
-The project is built around three fixed demonstration images:
-
-- A person using a laptop
-- A lion in a forest
-- Children playing soccer
-
-The application reads only these three project images from the `sample_images/` folder. This keeps the demonstration focused, reproducible, and aligned with the evaluation examples.
+The application supports JPG and PNG uploads. After uploading an image, the user can generate a caption and ask open-ended questions about that image.
 
 ## Problem Statement
 
@@ -24,14 +18,14 @@ Traditional image processing can detect simple patterns, colors, edges, or objec
 
 The objective is to build a user-friendly system that can:
 
-- Understand selected image content
+- Understand uploaded image content
 - Generate a meaningful image caption
 - Answer natural-language questions about the image
 - Record evaluation results such as correctness and response time
 
 ## Features
 
-- Fixed three-image project dataset
+- JPG and PNG image upload
 - Automatic image caption generation
 - Visual question answering
 - Interactive Streamlit interface
@@ -64,9 +58,9 @@ No custom training is performed. The focus of the project is implementation, int
 ## System Workflow
 
 ```text
-Select one of the three project images
+Upload a JPG or PNG image
         |
-Display the selected image
+Display the uploaded image
         |
 Generate image caption using BLIP
         |
@@ -87,9 +81,6 @@ ELC_VLM_Image_Understanding/
   SUBMISSION_CHECKLIST.md
   sample_images/
     README.md
-    sample_1_laptop.png
-    sample_2_lion.png
-    sample_3_soccer.png
   demo_assets/
     demo_script.md
     test_questions.csv
@@ -97,9 +88,9 @@ ELC_VLM_Image_Understanding/
     results.csv
 ```
 
-## Required Images
+## Demo Images
 
-Before running the final demo, place only the three provided images inside `sample_images/` using these exact filenames:
+For the final demo, use the three images prepared for this project:
 
 ```text
 sample_images/sample_1_laptop.png
@@ -107,7 +98,7 @@ sample_images/sample_2_lion.png
 sample_images/sample_3_soccer.png
 ```
 
-The app will show missing-file warnings if any of these files are not present.
+The app can also process any other JPG or PNG image through the upload control.
 
 ## Setup
 
@@ -138,10 +129,10 @@ http://localhost:8501
 
 ## Usage
 
-1. Select one of the available project images.
+1. Upload a JPG or PNG image.
 2. Click **Generate caption**.
 3. Read the generated image description.
-4. Enter a question about the selected image.
+4. Enter a question about the uploaded image.
 5. Click **Answer question**.
 6. Add the expected answer if evaluating the result.
 7. Mark whether the answer is correct.
@@ -149,7 +140,7 @@ http://localhost:8501
 
 ## Evaluation Plan
 
-Evaluation is performed using the three fixed project images and predefined questions stored in:
+Evaluation can be performed using the three prepared demo images and predefined questions stored in:
 
 ```text
 demo_assets/test_questions.csv
@@ -189,7 +180,7 @@ demo_assets/demo_script.md
 The video should show:
 
 - Project title and roll number
-- Selection of the laptop image
+- Uploading the laptop image
 - Caption generation
 - Question answering
 - Saving an evaluation result
@@ -215,5 +206,4 @@ Before creating the final zip file, confirm that the folder contains:
 
 ## Conclusion
 
-This project demonstrates how computer vision can be extended through vision-language models. Instead of only detecting objects, the system can describe selected images and answer questions about them. The result is a simple, interactive, and practical image understanding application suitable for demonstrating modern computer vision concepts.
-
+This project demonstrates how computer vision can be extended through vision-language models. Instead of only detecting objects, the system can describe uploaded images and answer questions about them. The result is a simple, interactive, and practical image understanding application suitable for demonstrating modern computer vision concepts.
