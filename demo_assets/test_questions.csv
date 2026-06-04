@@ -1,0 +1,11 @@
+image_name,description,question,expected_answer
+sample_1_laptop.png,Man sitting indoors and using a laptop,What is the person using?,laptop
+sample_1_laptop.png,Man sitting indoors and using a laptop,Where is the person sitting?,chair
+sample_1_laptop.png,Man sitting indoors and using a laptop,Is there a plant in the image?,yes
+sample_2_lion.png,Lion standing in a forest,What animal is shown?,lion
+sample_2_lion.png,Lion standing in a forest,Where is the lion?,forest
+sample_2_lion.png,Lion standing in a forest,What color is the lion's mane?,brown
+sample_3_soccer.png,Children playing soccer on a field,What sport are the children playing?,soccer
+sample_3_soccer.png,Children playing soccer on a field,What object is on the grass?,soccer ball
+sample_3_soccer.png,Children playing soccer on a field,What colors are the jerseys?,blue and red
+

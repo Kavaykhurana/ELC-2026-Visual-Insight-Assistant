@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Large/local runtime files
+demo_video.mp4
+*.mov
+*.mp4
+
+# Hugging Face / model caches
+.cache/
+models/
+
+# Keep generated CSV headers, but avoid accidental large exports
+outputs/*.xlsx
+outputs/*.pdf
+

@@ -1,0 +1,2 @@
+timestamp,image_name,caption,question,predicted_answer,expected_answer,correct,latency_seconds
+
